@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 using DbSyncKit.DB.Helper;
-using DbSyncKit.DB.Interface;
+using DbSyncKit.Templates.Interface;
 using DbSyncKit.Templates.MySql;
 using Fluid;
 
@@ -81,7 +80,7 @@ namespace DbSyncKit.MySQL
         /// <param name="entity">The entity object.</param>
         /// <param name="keyColumns">The list of key columns for deletion.</param>
         /// <returns>The generated SQL delete query.</returns>
-        public string GenerateDeleteQuery<T>(T entity, List<string> keyColumns) where T : IDataContract
+        public string GenerateDeleteQuery<T>(T entity, List<string> keyColumns) 
         {
 
             string tableName = GetTableName<T>();
@@ -103,7 +102,7 @@ namespace DbSyncKit.MySQL
         /// <param name="keyColumns">The list of key columns for insertion.</param>
         /// <param name="excludedColumns">The list of columns to exclude from insertion.</param>
         /// <returns>The generated SQL insert query.</returns>
-        public string GenerateInsertQuery<T>(T entity, List<string> keyColumns, List<string> excludedColumns) where T : IDataContract
+        public string GenerateInsertQuery<T>(T entity, List<string> keyColumns, List<string> excludedColumns) 
         {
             string tableName = GetTableName<T>();
             string schemaName = GetTableSchema<T>() ?? DEFAULT_SCHEMA_NAME;
@@ -137,7 +136,7 @@ namespace DbSyncKit.MySQL
         /// <param name="ListOfColumns">The list of columns to select.</param>
         /// <param name="schemaName">The schema name (if applicable).</param>
         /// <returns>The generated SQL select query.</returns>
-        public string GenerateSelectQuery<T>(string tableName, List<string> ListOfColumns, string schemaName) where T : IDataContract
+        public string GenerateSelectQuery<T>(string tableName, List<string> ListOfColumns, string schemaName) 
         {
             if (string.IsNullOrEmpty(tableName) || ListOfColumns == null || ListOfColumns.Count == 0)
             {
@@ -166,7 +165,7 @@ namespace DbSyncKit.MySQL
         /// <param name="excludedColumns">The list of columns to exclude from update.</param>
         /// <param name="editedProperties">The dictionary containing edited properties.</param>
         /// <returns>The generated SQL update query.</returns>
-        public string GenerateUpdateQuery<T>(T DataContract, List<string> keyColumns, List<string> excludedColumns, (string propName, object propValue)[] editedProperties) where T : IDataContract
+        public string GenerateUpdateQuery<T>(T DataContract, List<string> keyColumns, List<string> excludedColumns, (string propName, object propValue)[] editedProperties) 
         {
             string tableName = GetTableName<T>();
 
@@ -188,7 +187,7 @@ namespace DbSyncKit.MySQL
         /// <param name="entity">The entity object.</param>
         /// <param name="keyColumns">The list of key columns for the condition.</param>
         /// <returns>The generated SQL condition.</returns>
-        public List<string> GetCondition<T>(T entity, List<string> keyColumns) where T : IDataContract
+        public List<string> GetCondition<T>(T entity, List<string> keyColumns) 
         {
             Type entityType = typeof(T);
             PropertyInfo[] keyProperties = GetKeyProperties<T>();
