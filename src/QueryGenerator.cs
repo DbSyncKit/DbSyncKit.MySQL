@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
 using DbSyncKit.DB.Helper;
-using DbSyncKit.DB.Interface;
+using DbSyncKit.Templates.Interface;
 using DbSyncKit.Templates.MySql;
 using Fluid;
 
