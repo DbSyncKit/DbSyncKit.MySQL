@@ -148,10 +148,12 @@ namespace DbSyncKit.MySQL
                 tableName = GetTableName<T>();
             }
 
+            var excapedColumns = ListOfColumns.Select(c => EscapeColumn(c)).ToList();
+
             return _template.SelectTemplate.Render(new TemplateContext(new
             {
                 TableName = tableName,
-                Columns = ListOfColumns
+                Columns = excapedColumns
             }));
 
         }
